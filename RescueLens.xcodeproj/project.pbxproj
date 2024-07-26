@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E50B334F2C53712200161B41 /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = E50B334E2C53712200161B41 /* OpenAI */; };
 		E54D69322C27C0DB0029399A /* Agdasima-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E54D69312C27C0DB0029399A /* Agdasima-Bold.ttf */; };
 		E595F1E12C27607A0031AE61 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E595F1E02C27607A0031AE61 /* AppDelegate.swift */; };
 		E595F1E32C27607A0031AE61 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E595F1E22C27607A0031AE61 /* SceneDelegate.swift */; };
@@ -38,6 +39,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E595F1F82C2774CB0031AE61 /* TOCropViewController in Frameworks */,
+				E50B334F2C53712200161B41 /* OpenAI in Frameworks */,
 				E595F1F62C2774CB0031AE61 /* CropViewController in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,6 +98,7 @@
 			packageProductDependencies = (
 				E595F1F52C2774CB0031AE61 /* CropViewController */,
 				E595F1F72C2774CB0031AE61 /* TOCropViewController */,
+				E50B334E2C53712200161B41 /* OpenAI */,
 			);
 			productName = V2;
 			productReference = E595F1DD2C27607A0031AE61 /* V2.app */;
@@ -116,7 +119,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E595F1D82C27607A0031AE61 /* Build configuration list for PBXProject "V2" */;
+			buildConfigurationList = E595F1D82C27607A0031AE61 /* Build configuration list for PBXProject "RescueLens" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -127,6 +130,7 @@
 			mainGroup = E595F1D42C27607A0031AE61;
 			packageReferences = (
 				E595F1F42C2774CB0031AE61 /* XCRemoteSwiftPackageReference "TOCropViewController" */,
+				E50B334D2C53712200161B41 /* XCRemoteSwiftPackageReference "OpenAI" */,
 			);
 			productRefGroup = E595F1DE2C27607A0031AE61 /* Products */;
 			projectDirPath = "";
@@ -365,7 +369,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E595F1D82C27607A0031AE61 /* Build configuration list for PBXProject "V2" */ = {
+		E595F1D82C27607A0031AE61 /* Build configuration list for PBXProject "RescueLens" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E595F1EF2C27607B0031AE61 /* Debug */,
@@ -386,6 +390,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E50B334D2C53712200161B41 /* XCRemoteSwiftPackageReference "OpenAI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MacPaw/OpenAI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
 		E595F1F42C2774CB0031AE61 /* XCRemoteSwiftPackageReference "TOCropViewController" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TimOliver/TOCropViewController.git";
@@ -397,6 +409,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E50B334E2C53712200161B41 /* OpenAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E50B334D2C53712200161B41 /* XCRemoteSwiftPackageReference "OpenAI" */;
+			productName = OpenAI;
+		};
 		E595F1F52C2774CB0031AE61 /* CropViewController */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E595F1F42C2774CB0031AE61 /* XCRemoteSwiftPackageReference "TOCropViewController" */;

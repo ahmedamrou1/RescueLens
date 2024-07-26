@@ -1,6 +1,15 @@
 {
-  "originHash" : "13653293ccb2b03fb3a569cd04e20814001c852aa41dbb682ce436209ddd9ee2",
+  "originHash" : "431a33832c618cfc749e053f6ddd0a64b262625ac0948f9b9d0005c7c62bce13",
   "pins" : [
+    {
+      "identity" : "openai",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MacPaw/OpenAI",
+      "state" : {
+        "revision" : "843e087929aa806adb611dbca93f9a4a7f28be04",
+        "version" : "0.3.0"
+      }
+    },
     {
       "identity" : "tocropviewcontroller",
       "kind" : "remoteSourceControl",

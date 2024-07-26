@@ -7,6 +7,7 @@
 
 import UIKit
 import CropViewController
+import OpenAI
 
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CropViewControllerDelegate {
@@ -14,9 +15,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet var takePhotoButton: UIButton!
     @IBOutlet var selectPhotoButton: UIButton!
     @IBOutlet var textInCenter: UILabel!
+    @IBOutlet var detectedAnimal: UILabel!
+    @IBOutlet var capturedImage: UIImageView!
+    @IBOutlet var responseLabel: UILabel!
     var finalBuffer: CVPixelBuffer?
     var imageClassification: MobileNetV2Output?
     var finalModel: MobileNetV2?
+    var animal: String?
+    var vc: UIViewController?
+    let openai = OpenAI(apiToken: "get your own OpenAI API key ):<")
+    let prompt = "The following injured animal was found. Provide immediate care instructions. Summarize your response to three short sentences."
+    var response: String?
+    
     override func viewDidLoad() {
         print("view loaded")
         super.viewDidLoad()
@@ -62,6 +72,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
         print("did crop")
         let resizedImage = resizeImage(image: image, targetSize: CGSize(width: 224, height: 224))
+        capturedImage.image = resizedImage
+        capturedImage.layer.borderColor = UIColor(.white).cgColor
+        capturedImage.layer.borderWidth = 3
         cropViewController.dismiss(animated: true)
         finalBuffer = buffer(from: resizedImage)
         performImageClassification()
@@ -145,15 +158,38 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             let startTime = Date()
             let output = try model.prediction(image: buffer)
             imageClassification = output
+            animal = output.classLabel
             let endTime = Date()
             let timeInterval = endTime.timeIntervalSince(startTime)
             print(timeInterval)
             print(output.classLabel)
-            textInCenter.text = output.classLabel
-            textInCenter.textColor = .black
+            callGPT(content: animal!)
+            while response == nil {}
+            responseLabel.text = response
+            responseLabel.isHidden = false
+            detectedAnimal.text = animal
+            detectedAnimal.isHidden = false
+            textInCenter.isHidden = true
+            
+            
+            
+            
             // Process your prediction output here
+            // switch to another view with back button for OpenAI response <-----------------
         } catch {
             print("Error making prediction: \(error.localizedDescription)")
+        }
+    }
+    func callGPT(content: String) {
+        let query = ChatQuery(messages: [.init(role: .user, content: prompt + content)!], model: .gpt4)
+        openai.chats(query: query) { result in
+            switch result {
+            case .success(let result):
+                print(result.choices.first?.message.content?.string!)
+                self.response = result.choices.first?.message.content?.string
+            case .failure (let error):
+                print(error)
+            }
         }
     }
 
