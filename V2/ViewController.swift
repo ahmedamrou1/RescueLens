@@ -166,6 +166,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             callGPT(content: animal!)
             while response == nil {}
             responseLabel.text = response
+            response = nil
             responseLabel.isHidden = false
             detectedAnimal.text = animal
             detectedAnimal.isHidden = false
